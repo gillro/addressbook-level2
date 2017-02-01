@@ -12,6 +12,7 @@ import seedu.addressbook.ui.TextUi;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.io.FileNotFoundException;
 
 
 /**
@@ -107,6 +108,7 @@ public class Main {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
+            storage.FileExists();
             storage.save(addressBook);
             return result;
         } catch (Exception e) {

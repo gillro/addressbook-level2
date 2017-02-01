@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -60,6 +61,13 @@ public class StorageFile {
      */
     public StorageFile() throws InvalidStorageFilePathException {
         this(DEFAULT_STORAGE_FILEPATH);
+    }
+    
+    public void FileExists() throws FileNotFoundException{
+    	Path path = Paths.get(DEFAULT_STORAGE_FILEPATH);
+    	if (!Files.exists(path)){
+    		throw new FileNotFoundException("Storage file not found");
+    	}
     }
 
     /**
