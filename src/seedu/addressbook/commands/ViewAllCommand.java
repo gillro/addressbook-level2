@@ -2,13 +2,14 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.Printable;
 
 
 /**
  * Shows all details of the person identified using the last displayed index.
  * Private contact details are shown.
  */
-public class ViewAllCommand extends Command {
+public class ViewAllCommand extends Command implements Printable{
 
     public static final String COMMAND_WORD = "viewall";
 
@@ -36,5 +37,18 @@ public class ViewAllCommand extends Command {
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+    }
+    
+    public String getPrintableString(Printable... printables){
+        String result = "";
+        for(Printable a:printables){
+            result.concat(a.getPrintableString());
+        }
+        return result;
+    }
+
+    @Override
+    public String getPrintableString() {
+        return null;
     }
 }
