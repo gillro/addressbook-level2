@@ -35,6 +35,9 @@ public class UtilsTest {
         // confirms nulls inside the list are not considered
         List<Object> nullList = Arrays.asList((Object) null);
         assertFalse(Utils.isAnyNull(nullList));
+        
+        //non empty list with only nulls
+        assertTrue(Utils.isAnyNull(null, null));
     }
 
     @Test
@@ -60,6 +63,21 @@ public class UtilsTest {
         assertNotUnique(null, 1, new Integer(1));
         assertNotUnique(null, null);
         assertNotUnique(null, "a", "b", null);
+        
+        //two list objects containing same objects
+        List<Object> nulllist = Arrays.asList((Object) null, (Object) null);
+        List<Object> nulllist2 = Arrays.asList((Object) null, (Object) null);
+        assertNotUnique(nulllist, nulllist2);
+        
+        //two list objects containing different objects
+        List<Object> nulllist3 = Arrays.asList("a", "abc");
+        List<Object> nulllist4 = Arrays.asList("a", "c");
+        assertAreUnique(nulllist3, nulllist4);
+        
+        //two list objects with one containing same objects
+        List<Object> nulllist5 = Arrays.asList("a", "a");
+        List<Object> nulllist6 = Arrays.asList("b", "c");
+        assertAreUnique(nulllist5, nulllist6);
     }
 
     private void assertAreUnique(Object... objects) {
