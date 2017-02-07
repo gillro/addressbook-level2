@@ -61,8 +61,22 @@ public class Name {
     }
 
     public boolean isSimilar(Name other) {
-        if (this.fullName.equals(other.fullName)){
+        String lowercaseMyName = this.fullName.toLowerCase();
+        String lowercaseOtherName = other.fullName.toLowerCase();
+        //if name is exactly same
+        if (lowercaseMyName.equals(lowercaseOtherName)){
             return true;
+        }
+        
+        //if one (first/last) name is same
+        String[] splitMyName = lowercaseMyName.split(" ");
+        String[] splitOtherName = lowercaseOtherName.split(" ");
+        for (String names: splitMyName){
+            for (String names2: splitOtherName){
+                if (names.equals(names2)){
+                    return true;
+                }
+            }
         }
         return false;
     }
